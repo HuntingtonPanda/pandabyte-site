@@ -173,6 +173,11 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
                   Privacy Policy
                 </Link>
               ) : null}
+              {project.links.deleteAccountRoute ? (
+                <Link href={project.links.deleteAccountRoute} className={styles.secondaryAction}>
+                  Delete Account
+                </Link>
+              ) : null}
             </div>
           </div>
         </article>

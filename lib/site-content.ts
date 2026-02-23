@@ -7,6 +7,7 @@ export interface ProjectLinkSet {
   repoUrl?: string;
   architectureUrl?: string;
   privacyRoute?: `/projects/${string}/privacy`;
+  deleteAccountRoute?: `/projects/${string}/delete-account`;
 }
 
 export interface ProjectCaseStudy {
@@ -74,6 +75,7 @@ export const PROJECTS: ProjectItem[] = [
       route: "/projects/nibble",
       architectureUrl: "/projects/nibble#architecture",
       privacyRoute: "/projects/nibble/privacy",
+      deleteAccountRoute: "/projects/nibble/delete-account",
     },
     caseStudy: {
       overview:
