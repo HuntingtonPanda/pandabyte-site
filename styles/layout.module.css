@@ -1,0 +1,126 @@
+.main {
+  position: relative;
+  overflow: clip;
+}
+
+.section {
+  padding: clamp(3.5rem, 8vw, 7rem) 0;
+  animation: sectionReveal 0.45s ease both;
+}
+
+.sectionMuted {
+  background: transparent;
+}
+
+.aboutPanel {
+  padding: clamp(1.5rem, 3vw, 2.5rem);
+  border-radius: var(--radius-lg);
+  border: 1px solid rgb(var(--powder-blue-rgb) / 0.34);
+  background:
+    radial-gradient(circle at 80% 12%, rgb(var(--powder-blue-rgb) / 0.2), transparent 40%),
+    rgb(var(--oxford-navy-rgb) / 0.47);
+  box-shadow: 0 18px 42px rgb(var(--prussian-blue-rgb) / 0.26);
+}
+
+.aboutGrid {
+  margin-top: 1.4rem;
+  row-gap: 1.1rem;
+}
+
+.aboutCopy,
+.aboutList {
+  grid-column: span 4;
+}
+
+.aboutCopy {
+  color: rgb(var(--mint-cream-rgb) / 0.93);
+  max-width: 62ch;
+}
+
+.aboutList {
+  margin: 0;
+  padding-left: 1.15rem;
+  display: grid;
+  gap: 0.55rem;
+  color: rgb(var(--mint-cream-rgb) / 0.9);
+}
+
+.aboutListItem {
+  line-height: var(--line-height-body);
+}
+
+.sectionHeading {
+  display: grid;
+  gap: 0.72rem;
+  max-width: 46rem;
+}
+
+.sectionHeadingCenter {
+  text-align: center;
+  justify-items: center;
+  margin-inline: auto;
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  width: fit-content;
+  padding: 0.35rem 0.75rem;
+  border-radius: 999px;
+  font-size: var(--meta-size);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: var(--meta-letter-spacing);
+  color: rgb(var(--mint-cream-rgb) / 0.97);
+  background: rgb(var(--powder-blue-rgb) / 0.2);
+}
+
+.headingTitle {
+  color: rgb(var(--mint-cream-rgb) / 0.97);
+}
+
+.headingDescription {
+  color: rgb(var(--mint-cream-rgb) / 0.88);
+  max-width: 40rem;
+  font-weight: 500;
+}
+
+.footer {
+  padding: 1.5rem 0 2.5rem;
+  border-top: 1px solid rgb(var(--powder-blue-rgb) / 0.24);
+  background: rgb(var(--prussian-blue-rgb) / 0.42);
+}
+
+.footerText {
+  font-size: var(--meta-size);
+  color: rgb(var(--mint-cream-rgb) / 0.72);
+}
+
+@media (min-width: 768px) {
+  .aboutCopy,
+  .aboutList {
+    grid-column: span 4;
+  }
+}
+
+@media (min-width: 1200px) {
+  .aboutCopy {
+    grid-column: span 6;
+  }
+
+  .aboutList {
+    grid-column: span 6;
+  }
+}
+
+@keyframes sectionReveal {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

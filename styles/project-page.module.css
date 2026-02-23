@@ -1,0 +1,121 @@
+.page {
+  min-height: 100vh;
+  padding: clamp(2.5rem, 8vw, 5rem) 0;
+}
+
+.panel {
+  border-radius: 1rem;
+  border: 1px solid rgb(var(--regal-navy-rgb) / 0.2);
+  padding: clamp(1.25rem, 3vw, 2.2rem);
+  background:
+    radial-gradient(circle at 90% 10%, rgb(var(--powder-blue-rgb) / 0.22), transparent 34%),
+    rgb(var(--mint-cream-rgb) / 0.9);
+  box-shadow: 0 18px 45px rgb(var(--prussian-blue-rgb) / 0.12);
+}
+
+.eyebrow {
+  text-transform: uppercase;
+  letter-spacing: var(--meta-letter-spacing);
+  font-size: var(--meta-size);
+  font-weight: 700;
+  color: rgb(var(--oxford-navy-rgb) / 0.86);
+}
+
+.title {
+  margin-top: 0.45rem;
+  color: rgb(var(--prussian-blue-rgb) / 0.96);
+}
+
+.statusBadge {
+  margin-top: 0.75rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  padding: 0.34rem 0.72rem;
+  font-size: var(--meta-size);
+  font-weight: 700;
+  letter-spacing: calc(var(--meta-letter-spacing) * 0.6);
+  text-transform: uppercase;
+}
+
+.live {
+  color: rgb(var(--mint-cream-rgb) / 1);
+  background: rgb(var(--regal-navy-rgb) / 0.92);
+}
+
+.comingSoon {
+  color: rgb(var(--oxford-navy-rgb) / 0.95);
+  background: rgb(var(--powder-blue-rgb) / 0.5);
+}
+
+.summary {
+  margin-top: 0.7rem;
+  color: rgb(var(--prussian-blue-rgb) / 0.82);
+  max-width: 60ch;
+}
+
+.chipRow {
+  margin-top: 0.2rem;
+  display: flex;
+  gap: 0.45rem;
+  flex-wrap: wrap;
+}
+
+.contentBlock {
+  margin-top: 1.3rem;
+  display: grid;
+  gap: 0.62rem;
+}
+
+.subheading {
+  font-size: var(--step-1);
+  color: rgb(var(--prussian-blue-rgb) / 0.94);
+}
+
+.bodyCopy {
+  color: rgb(var(--prussian-blue-rgb) / 0.86);
+  max-width: 65ch;
+  line-height: var(--line-height-body);
+}
+
+.highlights {
+  margin: 0;
+  padding-left: 1.1rem;
+  display: grid;
+  gap: 0.5rem;
+}
+
+.highlightItem {
+  color: rgb(var(--prussian-blue-rgb) / 0.88);
+  line-height: var(--line-height-body);
+}
+
+.actionRow {
+  margin-top: 0.2rem;
+  display: flex;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+}
+
+.primaryAction,
+.secondaryAction {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.55rem;
+  border-radius: 0.6rem;
+  padding: 0.5rem 0.95rem;
+  font-weight: 600;
+}
+
+.primaryAction {
+  color: rgb(var(--mint-cream-rgb) / 1);
+  background: rgb(var(--regal-navy-rgb) / 1);
+}
+
+.secondaryAction {
+  color: rgb(var(--oxford-navy-rgb) / 0.95);
+  border: 1px solid rgb(var(--regal-navy-rgb) / 0.24);
+  background: rgb(var(--mint-cream-rgb) / 0.86);
+}
