@@ -168,6 +168,11 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
                   </Link>
                 )
               ) : null}
+              {project.links.termsRoute ? (
+                <Link href={project.links.termsRoute} className={styles.secondaryAction}>
+                  Terms of Service
+                </Link>
+              ) : null}
               {project.links.privacyRoute ? (
                 <Link href={project.links.privacyRoute} className={styles.secondaryAction}>
                   Privacy Policy

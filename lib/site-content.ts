@@ -6,7 +6,8 @@ export interface ProjectLinkSet {
   demoUrl?: string;
   repoUrl?: string;
   architectureUrl?: string;
-  privacyRoute?: `/projects/${string}/privacy`;
+  termsRoute?: `/projects/${string}/terms` | `/terms/${string}.html`;
+  privacyRoute?: `/projects/${string}/privacy` | `/privacy/${string}.html`;
   deleteAccountRoute?: `/projects/${string}/delete-account`;
 }
 
@@ -74,7 +75,7 @@ export const PROJECTS: ProjectItem[] = [
     links: {
       route: "/projects/nibble",
       architectureUrl: "/projects/nibble#architecture",
-      privacyRoute: "/projects/nibble/privacy",
+      privacyRoute: "/privacy/nibble_policy.html",
       deleteAccountRoute: "/projects/nibble/delete-account",
     },
     caseStudy: {
@@ -91,6 +92,21 @@ export const PROJECTS: ProjectItem[] = [
         "Local-first read paths for resilient menu browsing.",
         "Privacy-aware account/data handling with a dedicated policy route.",
       ],
+    },
+  },
+  {
+    slug: "campus-event-escrow",
+    title: "Ducky's Money Bin",
+    summary:
+      "Campus event payments and escrow workflow for org invites, member signups, held funds, and policy-based refunds.",
+    status: "coming-soon",
+    platform: "phone",
+    tech: ["React Native", "Expo", "TypeScript", "Stripe", "Supabase"],
+    links: {
+      route: "/projects/campus-event-escrow",
+      termsRoute: "/terms/campus_event_escrow_terms.html",
+      privacyRoute: "/privacy/campus_event_escrow_policy.html",
+      deleteAccountRoute: "/projects/campus-event-escrow/delete-account",
     },
   },
   {
@@ -112,7 +128,7 @@ export const PROJECTS: ProjectItem[] = [
     summary:
       "Adaptive quiz generation for educators with review loops, export support, and analytics hooks.",
     status: "coming-soon",
-    platform: "both",
+    platform: "desktop",
     tech: ["Next.js", "TypeScript", "OpenAI API", "Prisma"],
     links: {
       route: "/projects/ai-quiz-generator",

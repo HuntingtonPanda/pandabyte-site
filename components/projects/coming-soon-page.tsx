@@ -26,6 +26,24 @@ export function ComingSoonPage({ project }: ComingSoonPageProps) {
             <Link href="/#projects" className={styles.primaryAction}>
               Back to Projects
             </Link>
+            {project.links.termsRoute ? (
+              <Link href={project.links.termsRoute} className={styles.secondaryAction}>
+                Terms of Service
+              </Link>
+            ) : null}
+            {project.links.privacyRoute ? (
+              <Link href={project.links.privacyRoute} className={styles.secondaryAction}>
+                Privacy Policy
+              </Link>
+            ) : null}
+            {project.links.deleteAccountRoute ? (
+              <Link
+                href={project.links.deleteAccountRoute}
+                className={styles.secondaryAction}
+              >
+                Delete Account
+              </Link>
+            ) : null}
           </div>
         </article>
       </div>
