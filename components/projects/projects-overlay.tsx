@@ -8,25 +8,26 @@ import { ProjectList } from "./project-list";
 
 interface ProjectsOverlayProps {
   open: boolean;
-  platform: "phone" | "desktop" | null;
+  category: "phone" | "desktop" | "other" | null;
   projects: ProjectItem[];
   onClose: () => void;
   onProjectSelect: () => void;
 }
 
-const PLATFORM_TITLE = {
+const CATEGORY_TITLE = {
   phone: "Phone",
   desktop: "Desktop",
+  other: "Other",
 } as const;
 
 export function ProjectsOverlay({
   open,
-  platform,
+  category,
   projects,
   onClose,
   onProjectSelect,
 }: ProjectsOverlayProps) {
-  if (typeof document === "undefined" || !open || !platform) {
+  if (typeof document === "undefined" || !open || !category) {
     return null;
   }
 
@@ -48,9 +49,9 @@ export function ProjectsOverlay({
         >
           Close
         </button>
-        <p className={styles.eyebrow}>Project Focus</p>
+        <p className={styles.eyebrow}>Project Category</p>
         <h3 id="projects-overlay-title" className={styles.title}>
-          {PLATFORM_TITLE[platform]} Projects
+          {CATEGORY_TITLE[category]} Projects
         </h3>
         <p className={styles.description}>
           Select a project to view a summary route with links, details, and

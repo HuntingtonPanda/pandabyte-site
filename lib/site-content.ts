@@ -1,5 +1,5 @@
 export type ProjectStatus = "live" | "coming-soon";
-export type ProjectPlatform = "phone" | "desktop" | "both";
+export type ProjectCategory = "phone" | "desktop" | "other" | "both";
 
 export interface ProjectLinkSet {
   route: `/projects/${string}`;
@@ -24,7 +24,7 @@ export interface ProjectItem {
   title: string;
   summary: string;
   status: ProjectStatus;
-  platform: ProjectPlatform;
+  category: ProjectCategory;
   tech: string[];
   links: ProjectLinkSet;
   caseStudy?: ProjectCaseStudy;
@@ -56,9 +56,13 @@ export const SECTION_IDS = {
 } as const;
 
 export const SITE_META = {
-  title: "Huntington Co | Software Engineer (Mobile + Full-stack)",
+  title: "Pandabyte - Projects by Huntington Co",
   description:
-    "Portfolio for Huntington Co featuring mobile and full-stack engineering work.",
+    "Pandabyte is Huntington Co's portfolio: React Native, Next.js, and Postgres-backed projects like Nibble, plus case studies and contact info.",
+  shortDescription:
+    "Portfolio and projects from Huntington Co (React Native, Next.js, Postgres).",
+  siteName: "Pandabyte",
+  url: "https://www.pandabyte.dev",
 } as const;
 
 export const RESUME_PATH = "/Huntington_SWE_Resume-1.pdf";
@@ -70,7 +74,7 @@ export const PROJECTS: ProjectItem[] = [
     summary:
       "Bruin dining companion with dietary filtering, local-first UX, and privacy-conscious routing.",
     status: "live",
-    platform: "phone",
+    category: "phone",
     tech: ["React Native", "Expo", "TypeScript", "Supabase"],
     links: {
       route: "/projects/nibble",
@@ -100,7 +104,7 @@ export const PROJECTS: ProjectItem[] = [
     summary:
       "Campus event payments and escrow workflow for org invites, member signups, held funds, and policy-based refunds.",
     status: "coming-soon",
-    platform: "phone",
+    category: "phone",
     tech: ["React Native", "Expo", "TypeScript", "Stripe", "Supabase"],
     links: {
       route: "/projects/campus-event-escrow",
@@ -115,7 +119,7 @@ export const PROJECTS: ProjectItem[] = [
     summary:
       "Computer vision safety classification pipeline for moderation workflows and model evaluation.",
     status: "coming-soon",
-    platform: "desktop",
+    category: "desktop",
     tech: ["Python", "OpenCV", "FastAPI", "PostgreSQL"],
     links: {
       route: "/projects/asset-scanner",
@@ -128,11 +132,23 @@ export const PROJECTS: ProjectItem[] = [
     summary:
       "Adaptive quiz generation for educators with review loops, export support, and analytics hooks.",
     status: "coming-soon",
-    platform: "desktop",
+    category: "desktop",
     tech: ["Next.js", "TypeScript", "OpenAI API", "Prisma"],
     links: {
       route: "/projects/ai-quiz-generator",
       repoUrl: "https://github.com/HuntingtonPanda/AI_Online_Kahoot",
+    },
+  },
+  {
+    slug: "gidi",
+    title: "GIDI",
+    summary:
+      "LEGO robotics build that combines sensors, YOLOv8, and OpenCV to track a selected target and launch red toy balls.",
+    status: "live",
+    category: "other",
+    tech: ["Python", "YOLOv8", "OpenCV", "Sensors", "LEGO Robotics"],
+    links: {
+      route: "/projects/gidi",
     },
   },
 ];

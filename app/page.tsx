@@ -70,7 +70,7 @@ export default function HomePage() {
               id="projects-heading"
               eyebrow="Featured Work"
               title="Projects"
-              description="Choose a device filter to browse relevant projects instantly."
+              description="Choose a category filter to browse relevant projects instantly."
             />
             <ProjectCarousel />
           </div>

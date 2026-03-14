@@ -19,6 +19,22 @@ const dmSans = DM_Sans({
 export const metadata: Metadata = {
   title: SITE_META.title,
   description: SITE_META.description,
+  metadataBase: new URL(SITE_META.url),
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    title: SITE_META.title,
+    description: SITE_META.shortDescription,
+    url: SITE_META.url,
+    siteName: SITE_META.siteName,
+    type: "website",
+  },
+  twitter: {
+    card: "summary",
+    title: SITE_META.title,
+    description: SITE_META.shortDescription,
+  },
 };
 
 export default function RootLayout({

@@ -8,37 +8,44 @@ import styles from "@/styles/projects.module.css";
 import { DeviceLauncher } from "./device-launcher";
 import { ProjectList } from "./project-list";
 
-type LauncherPlatform = "phone" | "desktop";
+type LauncherCategory = "phone" | "desktop" | "other";
 
 export function ProjectCarousel() {
-  const [activePlatform, setActivePlatform] = useState<LauncherPlatform>("phone");
+  const [activeCategory, setActiveCategory] = useState<LauncherCategory>("phone");
 
   const filteredProjects = useMemo<ProjectItem[]>(() => {
     return PROJECTS.filter(
-      (project) => project.platform === "both" || project.platform === activePlatform,
+      (project) => project.category === "both" || project.category === activeCategory,
     );
-  }, [activePlatform]);
+  }, [activeCategory]);
 
   return (
     <div className={styles.carousel}>
       <p className={styles.lead}>
-        Filter by device to see the most relevant project work immediately.
+        Filter by category to see the most relevant project work immediately.
       </p>
 
       <div className={styles.launcherGrid}>
         <DeviceLauncher
-          platform="phone"
-          active={activePlatform === "phone"}
+          category="phone"
+          active={activeCategory === "phone"}
           label="Phone Experience"
           description="Show mobile-focused projects."
-          onLaunch={() => setActivePlatform("phone")}
+          onLaunch={() => setActiveCategory("phone")}
         />
         <DeviceLauncher
-          platform="desktop"
-          active={activePlatform === "desktop"}
+          category="desktop"
+          active={activeCategory === "desktop"}
           label="Desktop Experience"
           description="Show web and desktop-focused projects."
-          onLaunch={() => setActivePlatform("desktop")}
+          onLaunch={() => setActiveCategory("desktop")}
+        />
+        <DeviceLauncher
+          category="other"
+          active={activeCategory === "other"}
+          label="Others"
+          description="Show robotics builds and specialty experiments."
+          onLaunch={() => setActiveCategory("other")}
         />
       </div>
 

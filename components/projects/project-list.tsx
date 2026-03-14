@@ -17,7 +17,7 @@ export function ProjectList({ projects, onProjectSelect }: ProjectListProps) {
   if (projects.length === 0) {
     return (
       <p className={styles.emptyState}>
-        No projects are assigned to this platform yet.
+        No projects are assigned to this category yet.
       </p>
     );
   }

@@ -12,6 +12,7 @@ type ProjectPageProps = {
 };
 
 const projectMap = new Map(PROJECTS.map((project) => [project.slug, project]));
+const CUSTOM_PROJECT_ROUTES = new Set(["gidi"]);
 
 function getProject(slug: string) {
   return projectMap.get(slug);
@@ -22,7 +23,9 @@ function isExternalUrl(url: string) {
 }
 
 export function generateStaticParams() {
-  return PROJECTS.map((project) => ({ slug: project.slug }));
+  return PROJECTS.filter((project) => !CUSTOM_PROJECT_ROUTES.has(project.slug)).map(
+    (project) => ({ slug: project.slug }),
+  );
 }
 
 export async function generateMetadata({

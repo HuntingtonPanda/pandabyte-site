@@ -3,7 +3,7 @@ import type { MouseEvent } from "react";
 import styles from "@/styles/projects.module.css";
 
 interface DeviceLauncherProps {
-  platform: "phone" | "desktop";
+  category: "phone" | "desktop" | "other";
   label: string;
   description: string;
   active?: boolean;
@@ -11,13 +11,14 @@ interface DeviceLauncherProps {
 }
 
 export function DeviceLauncher({
-  platform,
+  category,
   label,
   description,
   active = false,
   onLaunch,
 }: DeviceLauncherProps) {
-  const isPhone = platform === "phone";
+  const isPhone = category === "phone";
+  const isDesktop = category === "desktop";
 
   return (
     <button
@@ -32,10 +33,24 @@ export function DeviceLauncher({
             <span className={styles.phoneNotch} />
             <span className={styles.phoneBar} />
           </span>
-        ) : (
+        ) : isDesktop ? (
           <span className={styles.desktopArt}>
             <span className={styles.desktopScreen} />
             <span className={styles.desktopBase} />
+          </span>
+        ) : (
+          <span className={styles.brickArt}>
+            <span className={`${styles.brickBlock} ${styles.brickRed}`}>
+              <span className={styles.brickStud} />
+              <span className={styles.brickStud} />
+            </span>
+            <span className={`${styles.brickBlock} ${styles.brickBlue}`}>
+              <span className={styles.brickStud} />
+            </span>
+            <span className={`${styles.brickBlock} ${styles.brickGreen}`}>
+              <span className={styles.brickStud} />
+              <span className={styles.brickStud} />
+            </span>
           </span>
         )}
       </span>
