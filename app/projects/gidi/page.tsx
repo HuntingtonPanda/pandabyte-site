@@ -16,12 +16,16 @@ const demoVideos = [
     youtubeId: "Gro-poXg-d8",
   },
   {
-    title: "Demo Slot 3",
-    placeholder: true,
+    title: "Aggressive Mode (Side)",
+    youtubeId: "SFtGVJGOvBk",
   },
   {
-    title: "Demo Slot 4",
-    placeholder: true,
+    title: "Single Targeting Mode (Side)",
+    youtubeId: "qB-TwIiSClU",
+  },
+  {
+    title: "Aggressive Mode (Computer Vision Demo)",
+    youtubeId: "h4WF6-8e904",
   },
 ] as const;
 
@@ -103,12 +107,14 @@ function LegoRail({
 function VideoEmbed({
   title,
   youtubeId,
+  className,
 }: {
   title: string;
   youtubeId: string;
+  className?: string;
 }) {
   return (
-    <div className={styles.videoCard}>
+    <div className={`${styles.videoCard} ${className ?? ""}`.trim()}>
       <p className={styles.videoLabel}>{title}</p>
       <div className={styles.videoFrame}>
         <iframe
@@ -183,35 +189,24 @@ export default function GidiProjectPage() {
             <div className={styles.sectionHeader}>
               <h2 className={styles.sectionTitle}>Demo Videos</h2>
               <p className={styles.sectionCopy}>
-                Forward-view tests showing aggressive pursuit, single-target
-                locking, and room for additional demo captures.
+                Forward-view and side-view tests showing aggressive pursuit and
+                single-target locking from multiple angles.
               </p>
             </div>
 
             <div className={styles.videoGrid}>
-              {demoVideos.map((video) =>
-                "placeholder" in video ? (
-                  <article key={video.title} className={styles.videoCard}>
-                    <p className={styles.videoLabel}>{video.title}</p>
-                    <div
-                      className={`${styles.videoFrame} ${styles.placeholderFrame}`}
-                    >
-                      <div className={styles.placeholderContent}>
-                        <span className={styles.placeholderEyebrow}>Coming Soon</span>
-                        <p className={styles.placeholderCopy}>
-                          Additional robotics demo footage will be added here.
-                        </p>
-                      </div>
-                    </div>
-                  </article>
-                ) : (
-                  <VideoEmbed
-                    key={video.title}
-                    title={video.title}
-                    youtubeId={video.youtubeId}
-                  />
-                ),
-              )}
+              {demoVideos.map((video, index) => (
+                <VideoEmbed
+                  key={video.title}
+                  title={video.title}
+                  youtubeId={video.youtubeId}
+                  className={
+                    index === demoVideos.length - 1 && demoVideos.length % 2 === 1
+                      ? styles.videoCardCentered
+                      : undefined
+                  }
+                />
+              ))}
             </div>
           </section>
         </section>

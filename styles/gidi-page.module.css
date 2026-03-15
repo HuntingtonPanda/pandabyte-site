@@ -210,6 +210,10 @@
   gap: 0.65rem;
 }
 
+.videoCardCentered {
+  justify-self: center;
+}
+
 .videoLabel {
   color: #6a3800;
   font-family: var(--font-heading);
@@ -269,6 +273,11 @@
 @media (min-width: 768px) {
   .videoGrid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .videoCardCentered {
+    width: min(100%, calc(50% - 0.5rem));
+    grid-column: 1 / -1;
   }
 }
 
