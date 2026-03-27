@@ -1,8 +1,12 @@
-import Link from "next/link";
 import type { Metadata } from "next";
 
+import {
+  buildShowcaseRail,
+  ProjectShowcasePage,
+  type ShowcaseRailColor,
+  type ShowcaseThemeStyle,
+} from "@/components/projects/project-showcase-page";
 import { PROJECTS, SITE_META } from "@/lib/site-content";
-import styles from "@/styles/gidi-page.module.css";
 
 const DESCRIPTION_VIDEO_ID = "Whvo1Hn9hA4";
 
@@ -29,29 +33,54 @@ const demoVideos = [
   },
 ] as const;
 
-const brickColors = ["red", "blue", "green", "white", "orange"] as const;
+const gidiTheme = {
+  "--showcase-page-bg": "#f3c93e",
+  "--showcase-text": "#442300",
+  "--showcase-back-color": "#613400",
+  "--showcase-back-bg": "rgb(255 245 201 / 0.82)",
+  "--showcase-back-border": "rgb(97 52 0 / 0.16)",
+  "--showcase-back-shadow": "0 0.4rem 0.8rem rgb(106 56 0 / 0.08)",
+  "--showcase-card-bg-start": "rgb(255 236 171 / 0.96)",
+  "--showcase-card-bg-end": "rgb(247 209 91 / 0.96)",
+  "--showcase-card-border": "rgb(97 52 0 / 0.16)",
+  "--showcase-card-shadow": "0 1rem 2rem rgb(126 71 0 / 0.12)",
+  "--showcase-card-inset": "inset 0 1px 0 rgb(255 255 255 / 0.45)",
+  "--showcase-eyebrow": "#8a4200",
+  "--showcase-title": "#5b2a00",
+  "--showcase-body": "rgb(68 35 0 / 0.88)",
+  "--showcase-tech-bg": "rgb(255 247 219 / 0.96)",
+  "--showcase-tech-border": "rgb(97 52 0 / 0.14)",
+  "--showcase-tech-color": "#6a3800",
+  "--showcase-video-label": "#6a3800",
+  "--showcase-video-frame-start": "rgb(214 159 22 / 0.96)",
+  "--showcase-video-frame-end": "rgb(183 122 4 / 0.96)",
+  "--showcase-video-frame-border": "rgb(90 44 0 / 0.16)",
+  "--showcase-video-frame-shadow": "0 0.85rem 1.6rem rgb(126 71 0 / 0.12)",
+  "--showcase-video-frame-inset": "inset 0 1px 0 rgb(255 232 172 / 0.4)",
+} satisfies ShowcaseThemeStyle;
 
-const leftRail = Array.from({ length: 14 }, (_, index) => ({
-  key: `left-${index}`,
-  color: brickColors[(index * 2) % brickColors.length],
-  variant: index % 2 === 0 ? "square" : "rectangle",
-  alignment: index % 3 === 0 ? "end" : "start",
-}));
+const gidiBrickPalette = [
+  { topColor: "#ff8a65", bottomColor: "#d94a2d" },
+  { topColor: "#96d2ff", bottomColor: "#4b82dc" },
+  { topColor: "#95df74", bottomColor: "#54a131" },
+  {
+    topColor: "#fff4d7",
+    bottomColor: "#e3d3a3",
+    studColor: "rgb(255 255 255 / 0.28)",
+  },
+  { topColor: "#ffc56d", bottomColor: "#df8320" },
+] satisfies readonly ShowcaseRailColor[];
 
-const rightRail = Array.from({ length: 14 }, (_, index) => ({
-  key: `right-${index}`,
-  color: brickColors[(index * 3 + 1) % brickColors.length],
-  variant: index % 2 === 0 ? "rectangle" : "square",
-  alignment: index % 3 === 0 ? "start" : "end",
-}));
+const leftRail = buildShowcaseRail({
+  side: "left",
+  palette: gidiBrickPalette,
+});
 
-const brickColorClassName = {
-  red: styles.brickRed,
-  blue: styles.brickBlue,
-  green: styles.brickGreen,
-  white: styles.brickWhite,
-  orange: styles.brickOrange,
-} as const;
+const rightRail = buildShowcaseRail({
+  side: "right",
+  palette: gidiBrickPalette,
+  colorOffset: 1,
+});
 
 const gidiProject = PROJECTS.find((project) => project.slug === "gidi");
 
@@ -65,72 +94,6 @@ export const metadata: Metadata = {
   },
 };
 
-function LegoRail({
-  side,
-}: {
-  side: "left" | "right";
-}) {
-  const bricks = side === "left" ? leftRail : rightRail;
-
-  return (
-    <aside
-      className={`${styles.rail} ${side === "left" ? styles.leftRail : styles.rightRail}`}
-      aria-hidden="true"
-    >
-      <div className={styles.railStack}>
-        {bricks.map((brick) => {
-          const studCount = brick.variant === "rectangle" ? 2 : 1;
-
-          return (
-            <span
-              key={brick.key}
-              className={[
-                styles.brick,
-                brick.variant === "rectangle" ? styles.rectangle : styles.square,
-                brick.alignment === "end" ? styles.alignEnd : styles.alignStart,
-                brickColorClassName[brick.color],
-              ].join(" ")}
-            >
-              <span className={styles.studs}>
-                {Array.from({ length: studCount }, (_, studIndex) => (
-                  <span key={`${brick.key}-stud-${studIndex}`} className={styles.stud} />
-                ))}
-              </span>
-            </span>
-          );
-        })}
-      </div>
-    </aside>
-  );
-}
-
-function VideoEmbed({
-  title,
-  youtubeId,
-  className,
-}: {
-  title: string;
-  youtubeId: string;
-  className?: string;
-}) {
-  return (
-    <div className={`${styles.videoCard} ${className ?? ""}`.trim()}>
-      <p className={styles.videoLabel}>{title}</p>
-      <div className={styles.videoFrame}>
-        <iframe
-          className={styles.videoEmbed}
-          src={`https://www.youtube.com/embed/${youtubeId}`}
-          title={`${title} YouTube video player`}
-          loading="lazy"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          referrerPolicy="strict-origin-when-cross-origin"
-          allowFullScreen
-        />
-      </div>
-    </div>
-  );
-}
-
 export default function GidiProjectPage() {
   const techStack = gidiProject?.tech ?? [
     "Python",
@@ -141,78 +104,31 @@ export default function GidiProjectPage() {
   ];
 
   return (
-    <main className={styles.page}>
-      <div className={styles.shell}>
-        <LegoRail side="left" />
-
-        <section className={styles.content}>
-          <Link href="/#projects" className={styles.backLink}>
-            Back to Projects
-          </Link>
-
-          <article className={styles.heroCard}>
-            <p className={styles.eyebrow}>Robotics Project</p>
-            <h1 className={styles.title}>Guided Intruder Detection and Interception</h1>
-            <p className={styles.description}>
-              GIDI is a LEGO robotics project that combines onboard sensors with
-              YOLOv8 and OpenCV to detect, track, and target a selected
-              individual. Once the system locks on, the robot advances and fires
-              red toy balls from its mounted toy blaster to demonstrate guided
-              interception behavior.
-            </p>
-
-            <div className={styles.techRow}>
-              {techStack.map((tech) => (
-                <span key={tech} className={styles.techBadge}>
-                  {tech}
-                </span>
-              ))}
-            </div>
-          </article>
-
-          <section className={styles.section}>
-            <div className={styles.sectionHeader}>
-              <h2 className={styles.sectionTitle}>Project Description Video</h2>
-              <p className={styles.sectionCopy}>
-                A short walkthrough of the project goals, hardware, and
-                detection pipeline.
-              </p>
-            </div>
-
-            <VideoEmbed
-              title="Project Description Video"
-              youtubeId={DESCRIPTION_VIDEO_ID}
-            />
-          </section>
-
-          <section className={styles.section}>
-            <div className={styles.sectionHeader}>
-              <h2 className={styles.sectionTitle}>Demo Videos</h2>
-              <p className={styles.sectionCopy}>
-                Forward-view and side-view tests showing aggressive pursuit and
-                single-target locking from multiple angles.
-              </p>
-            </div>
-
-            <div className={styles.videoGrid}>
-              {demoVideos.map((video, index) => (
-                <VideoEmbed
-                  key={video.title}
-                  title={video.title}
-                  youtubeId={video.youtubeId}
-                  className={
-                    index === demoVideos.length - 1 && demoVideos.length % 2 === 1
-                      ? styles.videoCardCentered
-                      : undefined
-                  }
-                />
-              ))}
-            </div>
-          </section>
-        </section>
-
-        <LegoRail side="right" />
-      </div>
-    </main>
+    <ProjectShowcasePage
+      eyebrow="Robotics Project"
+      title="Guided Intruder Detection and Interception"
+      description="GIDI is a LEGO robotics project that combines onboard sensors with YOLOv8 and OpenCV to detect, track, and target a selected individual. Once the system locks on, the robot advances and fires red toy balls from its mounted toy blaster to demonstrate guided interception behavior."
+      techStack={techStack}
+      sections={[
+        {
+          title: "Project Description Video",
+          copy: "A short walkthrough of the project goals, hardware, and detection pipeline.",
+          videos: [
+            {
+              title: "Project Description Video",
+              youtubeId: DESCRIPTION_VIDEO_ID,
+            },
+          ],
+        },
+        {
+          title: "Demo Videos",
+          copy: "Forward-view and side-view tests showing aggressive pursuit and single-target locking from multiple angles.",
+          videos: demoVideos,
+        },
+      ]}
+      themeStyle={gidiTheme}
+      leftRail={leftRail}
+      rightRail={rightRail}
+    />
   );
 }

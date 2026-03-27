@@ -12,7 +12,7 @@ type ProjectPageProps = {
 };
 
 const projectMap = new Map(PROJECTS.map((project) => [project.slug, project]));
-const CUSTOM_PROJECT_ROUTES = new Set(["gidi"]);
+const CUSTOM_PROJECT_ROUTES = new Set(["campus-event-escrow", "gidi"]);
 
 function getProject(slug: string) {
   return projectMap.get(slug);

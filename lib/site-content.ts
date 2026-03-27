@@ -103,7 +103,7 @@ export const PROJECTS: ProjectItem[] = [
     title: "Ducky's Money Bin",
     summary:
       "Campus event payments and escrow workflow for org invites, member signups, held funds, and policy-based refunds.",
-    status: "coming-soon",
+    status: "live",
     category: "phone",
     tech: ["React Native", "Expo", "TypeScript", "Stripe", "Supabase"],
     links: {
