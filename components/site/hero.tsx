@@ -39,7 +39,7 @@ export function Hero() {
         <div className={styles.visual}>
           <Image
             src="/PandaDrawing.png"
-            alt="Panda mascot illustration"
+            alt="Pandabyte panda mascot – portfolio of Huntington Co"
             fill
             priority
             sizes="(min-width: 1200px) 360px, (min-width: 768px) 280px, 220px"

@@ -19,6 +19,7 @@ const dmSans = DM_Sans({
 export const metadata: Metadata = {
   title: SITE_META.title,
   description: SITE_META.description,
+  keywords: [...SITE_META.keywords],
   metadataBase: new URL(SITE_META.url),
   alternates: {
     canonical: "/",
@@ -37,6 +38,35 @@ export const metadata: Metadata = {
   },
 };
 
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": `${SITE_META.url}/#website`,
+      name: "Pandabyte",
+      url: SITE_META.url,
+      description: SITE_META.description,
+    },
+    {
+      "@type": "Person",
+      "@id": `${SITE_META.url}/#person`,
+      name: "Huntington Co",
+      url: SITE_META.url,
+      jobTitle: "Software Engineer",
+      alumniOf: {
+        "@type": "CollegeOrUniversity",
+        name: "University of California, Los Angeles",
+        alternateName: "UCLA",
+      },
+      sameAs: [
+        "https://github.com/HuntingtonPanda",
+        "https://www.linkedin.com/in/huntington-co/",
+      ],
+    },
+  ],
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -44,7 +74,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${sora.variable} ${dmSans.variable}`}>{children}</body>
+      <body className={`${sora.variable} ${dmSans.variable}`}>
+        {children}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+      </body>
     </html>
   );
 }

@@ -56,13 +56,24 @@ export const SECTION_IDS = {
 } as const;
 
 export const SITE_META = {
-  title: "Pandabyte - Projects by Huntington Co",
+  title: "Pandabyte | Huntington Co – Software Engineer & Full-Stack Developer",
   description:
-    "Pandabyte is Huntington Co's portfolio: React Native, Next.js, and Postgres-backed projects like Nibble, plus case studies and contact info.",
+    "Pandabyte is the portfolio of Huntington Co, a Regents Scholar at UCLA. Featuring Nibble (a student dining app), robotics projects, and full-stack case studies built with React Native, Next.js, and Postgres.",
   shortDescription:
-    "Portfolio and projects from Huntington Co (React Native, Next.js, Postgres).",
+    "Pandabyte – portfolio of Huntington Co, UCLA software engineer. React Native, Next.js, and Postgres projects.",
   siteName: "Pandabyte",
   url: "https://www.pandabyte.dev",
+  keywords: [
+    "Pandabyte",
+    "Huntington Co",
+    "software engineer",
+    "full-stack developer",
+    "UCLA",
+    "React Native",
+    "Next.js",
+    "Nibble",
+    "portfolio",
+  ],
 } as const;
 
 export const RESUME_PATH = "/Huntington_SWE_Resume-1.pdf";
