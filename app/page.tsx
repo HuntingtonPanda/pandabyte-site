@@ -116,14 +116,17 @@ export default function HomePage() {
           aria-labelledby="contact-heading"
         >
           <div className="container">
-            <SectionHeading
-              id="contact-heading"
-              eyebrow="Contact"
-              title="Let's Build Something Useful"
-              description="Reach out for internships, full-time opportunities, or collaboration."
-              align="center"
-            />
-            <ContactLinks />
+            <div className={styles.contactPanel}>
+              <SectionHeading
+                id="contact-heading"
+                eyebrow="Contact"
+                title="Let's Build Something Useful."
+                description="Reach out for internships, full-time opportunities, or collaboration."
+                align="center"
+                eyebrowVariant="dash"
+              />
+              <ContactLinks />
+            </div>
           </div>
         </section>
       </main>

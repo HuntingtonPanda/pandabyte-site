@@ -6,6 +6,7 @@ interface SectionHeadingProps {
   title: string;
   description?: string;
   align?: "left" | "center";
+  eyebrowVariant?: "box" | "dash";
 }
 
 export function SectionHeading({
@@ -14,15 +15,19 @@ export function SectionHeading({
   title,
   description,
   align = "left",
+  eyebrowVariant = "box",
 }: SectionHeadingProps) {
   const headingClassName =
     align === "center"
       ? `${styles.sectionHeading} ${styles.sectionHeadingCenter}`
       : styles.sectionHeading;
 
+  const eyebrowClassName =
+    eyebrowVariant === "dash" ? styles.eyebrowDash : styles.eyebrow;
+
   return (
     <div className={headingClassName}>
-      <p className={styles.eyebrow}>{eyebrow}</p>
+      <p className={eyebrowClassName}>{eyebrow}</p>
       <h2 id={id} className={styles.headingTitle}>
         {title}
       </h2>
