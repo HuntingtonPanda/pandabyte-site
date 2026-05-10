@@ -116,13 +116,23 @@ export function ProjectList({ projects, onProjectSelect }: ProjectListProps) {
               </Link>
             ) : null}
             {project.links.privacyRoute ? (
-              <Link
-                href={project.links.privacyRoute}
-                className={styles.secondaryLink}
-                onClick={onProjectSelect}
-              >
-                Privacy Policy
-              </Link>
+              project.links.privacyRoute.endsWith(".html") ? (
+                <a
+                  href={project.links.privacyRoute}
+                  className={styles.secondaryLink}
+                  onClick={onProjectSelect}
+                >
+                  Privacy Policy
+                </a>
+              ) : (
+                <Link
+                  href={project.links.privacyRoute}
+                  className={styles.secondaryLink}
+                  onClick={onProjectSelect}
+                >
+                  Privacy Policy
+                </Link>
+              )
             ) : null}
             {project.links.deleteAccountRoute ? (
               <Link

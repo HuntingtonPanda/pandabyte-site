@@ -1,19 +1,20 @@
 :root {
-  --regal-navy: #134074;
-  --oxford-navy: #13315c;
-  --prussian-blue: #0b2545;
-  --powder-blue: #8da9c4;
-  --mint-cream: #eef4ed;
+  --cocoa: #1a120b;
+  --cocoa-deep: #0e0905;
+  --bone: #f5ecdb;
+  --amber: #e89a3a;
+  --rust: #c5532a;
+  --moss: #6b8e4e;
+  --accent: var(--amber);
 
-  --regal-navy-rgb: 19 64 116;
-  --oxford-navy-rgb: 19 49 92;
-  --prussian-blue-rgb: 11 37 69;
-  --powder-blue-rgb: 141 169 196;
-  --mint-cream-rgb: 238 244 237;
-
-  --surface-soft: rgb(var(--regal-navy-rgb) / 0.08);
-  --surface-mid: rgb(var(--oxford-navy-rgb) / 0.16);
-  --surface-strong: rgb(var(--powder-blue-rgb) / 0.2);
+  --surface: rgba(245, 236, 219, 0.04);
+  --surface-strong: rgba(245, 236, 219, 0.09);
+  --hairline: rgba(245, 236, 219, 0.14);
+  --hairline-strong: rgba(245, 236, 219, 0.32);
+  --ink-1: var(--bone);
+  --ink-2: rgba(245, 236, 219, 0.76);
+  --ink-3: rgba(245, 236, 219, 0.55);
+  --ink-4: rgba(245, 236, 219, 0.34);
 
   --step-0: 1rem;
   --step-1: 1.25rem;
@@ -23,16 +24,26 @@
   --step-5: 3.0518rem;
 
   --line-height-body: 1.68;
-  --line-height-heading: 1.15;
+  --line-height-heading: 1.1;
   --meta-size: 0.8125rem;
-  --meta-letter-spacing: 0.1em;
+  --meta-letter-spacing: 0.06em;
 
-  --font-heading: var(--font-sora), "Sora", "Segoe UI", sans-serif;
-  --font-body: var(--font-dm-sans), "DM Sans", "Segoe UI", sans-serif;
+  --font-heading: var(--font-space-grotesk), "Space Grotesk", "Helvetica Neue", sans-serif;
+  --font-body: var(--font-space-grotesk), "Space Grotesk", "Helvetica Neue", sans-serif;
+  --font-mono: var(--font-jetbrains-mono), "JetBrains Mono", monospace;
 
-  --radius-lg: 1.25rem;
-  --radius-md: 0.875rem;
-  --radius-sm: 0.5rem;
+  --radius-lg: 0px;
+  --radius-md: 0px;
+  --radius-sm: 0px;
+
+  /* RGB-format shims so existing project/overlay CSS still resolves */
+  --mint-cream-rgb: 245 236 219;   /* maps to bone */
+  --bone-rgb: 245 236 219;
+  --amber-rgb: 232 154 58;
+  --prussian-blue-rgb: 14 9 5;     /* maps to cocoa-deep */
+  --oxford-navy-rgb: 26 18 11;     /* maps to cocoa */
+  --regal-navy-rgb: 26 18 11;
+  --powder-blue-rgb: 232 154 58;   /* maps to amber */
 }
 
 html {
@@ -49,20 +60,27 @@ html {
 body {
   margin: 0;
   min-height: 100vh;
-  color: rgb(var(--mint-cream-rgb) / 0.92);
+  color: var(--ink-1);
   background:
-    radial-gradient(circle at 14% 12%, rgb(var(--regal-navy-rgb) / 0.3), transparent 44%),
-    radial-gradient(circle at 86% 24%, rgb(var(--powder-blue-rgb) / 0.24), transparent 42%),
-    radial-gradient(circle at 52% 72%, rgb(var(--mint-cream-rgb) / 0.12), transparent 50%),
-    linear-gradient(
-      155deg,
-      rgb(var(--prussian-blue-rgb) / 0.89) 0%,
-      rgb(var(--oxford-navy-rgb) / 0.86) 46%,
-      rgb(var(--prussian-blue-rgb) / 0.9) 100%
-    );
+    radial-gradient(60% 40% at 18% 0%, rgba(232, 154, 58, 0.18), transparent 60%),
+    radial-gradient(40% 40% at 100% 30%, rgba(197, 83, 42, 0.12), transparent 60%),
+    var(--cocoa-deep);
   font-family: var(--font-body);
   line-height: var(--line-height-body);
   background-attachment: fixed;
+  position: relative;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(245, 236, 219, 0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(245, 236, 219, 0.025) 1px, transparent 1px);
+  background-size: 32px 32px;
+  pointer-events: none;
+  z-index: 0;
 }
 
 h1,
@@ -74,8 +92,9 @@ h6 {
   margin: 0;
   font-family: var(--font-heading);
   line-height: var(--line-height-heading);
-  letter-spacing: -0.02em;
-  color: rgb(var(--mint-cream-rgb) / 0.95);
+  letter-spacing: -0.04em;
+  text-transform: uppercase;
+  color: var(--ink-1);
 }
 
 h1 {
@@ -109,7 +128,7 @@ p {
 }
 
 a {
-  color: rgb(var(--powder-blue-rgb) / 0.97);
+  color: var(--ink-2);
   text-decoration: none;
 }
 
@@ -120,13 +139,20 @@ img {
 }
 
 :focus-visible {
-  outline: 2px solid rgb(var(--powder-blue-rgb) / 0.85);
+  outline: 2px solid var(--accent);
   outline-offset: 3px;
+}
+
+::selection {
+  background: var(--accent);
+  color: var(--cocoa-deep);
 }
 
 .container {
   width: min(1120px, calc(100% - 2rem));
   margin-inline: auto;
+  position: relative;
+  z-index: 1;
 }
 
 .grid {

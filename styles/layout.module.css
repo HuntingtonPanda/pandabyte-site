@@ -14,12 +14,8 @@
 
 .aboutPanel {
   padding: clamp(1.5rem, 3vw, 2.5rem);
-  border-radius: var(--radius-lg);
-  border: 1px solid rgb(var(--powder-blue-rgb) / 0.34);
-  background:
-    radial-gradient(circle at 80% 12%, rgb(var(--powder-blue-rgb) / 0.2), transparent 40%),
-    rgb(var(--oxford-navy-rgb) / 0.47);
-  box-shadow: 0 18px 42px rgb(var(--prussian-blue-rgb) / 0.26);
+  border: 1px solid var(--hairline);
+  background: var(--surface);
 }
 
 .aboutGrid {
@@ -33,7 +29,7 @@
 }
 
 .aboutCopy {
-  color: rgb(var(--mint-cream-rgb) / 0.93);
+  color: var(--ink-2);
   max-width: 62ch;
 }
 
@@ -42,7 +38,7 @@
   padding-left: 1.15rem;
   display: grid;
   gap: 0.55rem;
-  color: rgb(var(--mint-cream-rgb) / 0.9);
+  color: var(--ink-2);
 }
 
 .aboutListItem {
@@ -66,34 +62,43 @@
   align-items: center;
   width: fit-content;
   padding: 0.35rem 0.75rem;
-  border-radius: 999px;
+  border-radius: 0;
+  font-family: var(--font-mono);
   font-size: var(--meta-size);
-  font-weight: 700;
+  font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: var(--meta-letter-spacing);
-  color: rgb(var(--mint-cream-rgb) / 0.97);
-  background: rgb(var(--powder-blue-rgb) / 0.2);
+  letter-spacing: 0.16em;
+  color: var(--accent);
+  background: var(--surface);
+  border: 1px solid var(--hairline);
 }
 
 .headingTitle {
-  color: rgb(var(--mint-cream-rgb) / 0.97);
+  color: var(--ink-1);
 }
 
 .headingDescription {
-  color: rgb(var(--mint-cream-rgb) / 0.88);
+  color: var(--ink-2);
   max-width: 40rem;
-  font-weight: 500;
+  font-weight: 400;
+  text-transform: none;
+  letter-spacing: 0;
 }
 
 .footer {
   padding: 1.5rem 0 2.5rem;
-  border-top: 1px solid rgb(var(--powder-blue-rgb) / 0.24);
-  background: rgb(var(--prussian-blue-rgb) / 0.42);
+  border-top: 1px solid var(--hairline);
+  background: rgba(14, 9, 5, 0.72);
+  position: relative;
+  z-index: 1;
 }
 
 .footerText {
+  font-family: var(--font-mono);
   font-size: var(--meta-size);
-  color: rgb(var(--mint-cream-rgb) / 0.72);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--ink-3);
 }
 
 @media (min-width: 768px) {
