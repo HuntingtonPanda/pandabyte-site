@@ -29,32 +29,66 @@ export default function HomePage() {
           aria-labelledby="about-heading"
         >
           <div className="container">
-            <div className={styles.aboutPanel}>
-              <SectionHeading
-                id="about-heading"
-                eyebrow="About"
-                title="Engineer First, Product Focused"
-                description="I ship reliable mobile and web features with strong product thinking and backend discipline."
-              />
-              <div className={`grid ${styles.aboutGrid}`}>
+            <div className={styles.aboutLayout}>
+              {/* Left column */}
+              <div className={styles.aboutLeft}>
+                <p className={styles.eyebrow} id="about-heading">About</p>
+                <h2 className={styles.aboutHeadline}>
+                  Engineer First.<br />Product<br />Focused.
+                </h2>
                 <p className={styles.aboutCopy}>
                   From spec to release, I focus on clear user flows,
-                  maintainable code, and fast iteration loops.
+                  maintainable code, and fast iteration loops — building
+                  the parts users feel and the parts that just have to work.
                 </p>
-                <ul className={styles.aboutList}>
-                  <li className={styles.aboutListItem}>
-                    Shipping mindset: scoped milestones, rapid feedback, and
-                    continuous refinement.
-                  </li>
-                  <li className={styles.aboutListItem}>
-                    Reliability: typed interfaces, predictable state, and
-                    backend guardrails.
-                  </li>
-                  <li className={styles.aboutListItem}>
-                    Proof point: Regents Scholar @ UCLA; shipped Nibble with
-                    dietary filtering and privacy-conscious architecture.
-                  </li>
-                </ul>
+                <div className={styles.aboutStats}>
+                  <div className={styles.aboutStat}>
+                    <span className={styles.aboutStatNumber}>5</span>
+                    <span className={styles.aboutStatLabel}>Projects shipped or in flight</span>
+                  </div>
+                  <div className={styles.aboutStat}>
+                    <span className={styles.aboutStatNumber}>4 yr</span>
+                    <span className={styles.aboutStatLabel}>Building products end-to-end</span>
+                  </div>
+                  <div className={styles.aboutStat}>
+                    <span className={styles.aboutStatNumber}>UCLA</span>
+                    <span className={styles.aboutStatLabel}>Regents Scholar, CS</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Right column */}
+              <div className={styles.aboutRight}>
+                <div className={styles.aboutPrinciple}>
+                  <span className={styles.aboutPrincipleNum}>01</span>
+                  <div>
+                    <h3 className={styles.aboutPrincipleTitle}>Shipping Mindset</h3>
+                    <p className={styles.aboutPrincipleDesc}>
+                      Scoped milestones, rapid feedback loops, continuous refinement.
+                      I&apos;d rather ship the second-best idea today than the best idea next month.
+                    </p>
+                  </div>
+                </div>
+                <div className={styles.aboutPrinciple}>
+                  <span className={styles.aboutPrincipleNum}>02</span>
+                  <div>
+                    <h3 className={styles.aboutPrincipleTitle}>Reliability Discipline</h3>
+                    <p className={styles.aboutPrincipleDesc}>
+                      Typed interfaces, predictable state, backend guardrails.
+                      UI feels calm because the system underneath is calm.
+                    </p>
+                  </div>
+                </div>
+                <div className={styles.aboutPrinciple}>
+                  <span className={styles.aboutPrincipleNum}>03</span>
+                  <div>
+                    <h3 className={styles.aboutPrincipleTitle}>Product Taste</h3>
+                    <p className={styles.aboutPrincipleDesc}>
+                      Regents Scholar @ UCLA. Shipped Nibble with dietary filtering
+                      and privacy-conscious architecture used by Bruin students.
+                    </p>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
